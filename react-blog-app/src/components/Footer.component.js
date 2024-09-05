@@ -6,15 +6,12 @@ const Footer = () => (
         <div className="footer-content">
             <div className="footer-section about">
                 <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem nesciunt, ducimus cupiditate iusto 
-                    impedit beatae maxime ipsa fuga omnis molestias neque placeat repudiandae perspiciatis! Sunt laboriosam 
-                    iste nobis dignissimos aspernatur, facere suscipit laudantium ullam sit, ipsa enim, ipsam porro magnam. 
-                    Inventore porro quibusdam maxime quo blanditiis unde enim a dicta.
+                    Thank you for visiting my blog react application. I’m Pablo Llanes, a software engineer based in Quito. This site will be used to build my portfolio. If you have any questions or want to collaborate, feel free to reach out.
                 </p>
             </div>
             <div className="footer-section links">
             <h2>Quick Links</h2>
-                <ul>
+                <ul className="quick-links">
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/about">About</Link></li>
                 </ul>
@@ -22,15 +19,8 @@ const Footer = () => (
             <div className="footer-section social">
             <h2>Connect with Me</h2>
                 <div className="social-links">
-                    <Link to="#">
-                    Twitter
-                    </Link>
-                    <Link to="#">
-                    GitHub
-                    </Link>
-                    <Link to="#">
-                    LinkedIn
-                    </Link>
+                    <a href="https://www.linkedin.com/in/pablo-llanes-334635111/" target='_blank' rel="noreferrer">LinkedIn</a>
+                    <a href="https://github.com/pablodavid97" target='_blank' rel="noreferrer">GitHub</a>
                 </div>
             </div>
         </div>

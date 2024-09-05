@@ -1,0 +1,58 @@
+/* BlogPost.css */
+
+/* Main container for the blog post */
+.blog-post-container {
+    padding: 40px 20px;  /* Padding around the content */
+    background-color: #f7f7f7;  /* Light background to differentiate content */
+    display: flex;
+    justify-content: center;
+  }
+  
+  .blog-post {
+    background-color: white;
+    padding: 40px;  /* Extra padding inside the content for a clean look */
+    border-radius: 6px;  /* Slight border radius for modern touch */
+    max-width: 800px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* Subtle shadow for slight elevation */
+    font-family: 'Georgia', serif;  /* Serif font for readability in articles */
+  }
+  
+  /* Header of the blog post */
+  .blog-post-header {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+  }
+  
+  .blog-post-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  /* Blog post content */
+  .blog-post-content {
+    line-height: 1.8;
+    font-size: 1.125rem;
+    color: #444;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .blog-post-container {
+      padding: 20px 10px;
+    }
+  
+    .blog-post {
+      padding: 20px;
+    }
+  
+    .blog-post-title {
+      font-size: 2.2rem;
+    }
+  
+    .blog-post-content {
+      font-size: 1rem;
+    }
+  }
+  

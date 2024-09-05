@@ -1,8 +1,24 @@
+import React from 'react';
+import BlogList from './BlogList.component';
+import './Home.css';
+
 const Home = () => (
     <>
-        <h1>Home Page</h1>
-        <p>Displays a list of blog posts.</p>
+        <section className="hero">
+            <div className="hero-content">
+                <h1>Hi There, I'm Pablo</h1>
+                <img
+                    src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortFlat&accessoriesType=Prescription02&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerSweater&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light"  
+                    alt="3D Avatar"
+                    className="avatar"
+                />
+                <h4>I'm a Software Developer based in Quito. Focusing on Web technologies like React, TypeScript, and Node.js. This React Project is the first one I'll include in my portfolio.</h4>
+            </div>
+        </section>
+        <section className="blog-list-section">
+            <BlogList />
+        </section>
     </>
-)
+);
 
 export default Home;

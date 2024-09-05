@@ -5,6 +5,10 @@
     text-align: center;
 }
 
+.footer p {
+    color: #fff;
+}
+
 .footer-content {
     display: flex;
     justify-content: space-around;
@@ -12,7 +16,7 @@
 }
 
 .footer-section {
-    margin: 10px;
+    margin: 20px;
 }
 
 .footer-section h2 {
@@ -43,6 +47,10 @@
 
 .footer-section ul li a:hover {
     text-decoration: underline;
+}
+
+.quick-links a {
+    margin-right: 10px;
 }
 
 .social-links a {

@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "Understanding React Components",
+        "excerpt": "In this post, we will explore the basics of React components...",
+        "content": "React components are the building blocks of any React application. They allow us to split the UI into independent, reusable pieces..."
+    },
+    {
+        "id": 2,
+        "title": "State and Props in React",
+        "excerpt": "This post dives deep into the concept of state and props in React...",
+        "content": "State and props are core concepts in React. While props allow data to be passed from parent to child components, state is managed within a component and can change over time..."
+    },
+    {
+        "id": 3,
+        "title": "Getting Started with React Hooks",
+        "excerpt": "Hooks are a new addition in React 16.8 that let you use state and other React features without writing a class...",
+        "content": "React hooks provide a new way to handle state, lifecycle methods, and more in functional components. Two of the most commonly used hooks are `useState` and `useEffect`..."
+    }
+]
