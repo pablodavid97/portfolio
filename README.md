@@ -1,2 +1,3 @@
 # portfolio
-Personal website portfolio with all my front-end projects
+
+Personal portfolio with a collection of the projects I've worked on throughout the years.
