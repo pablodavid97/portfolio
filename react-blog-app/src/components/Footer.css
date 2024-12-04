@@ -16,36 +16,25 @@
 }
 
 .footer-section {
-    margin: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 40rem;
+    padding: 2rem 0;
 }
 
 .footer-section h2 {
-    margin-bottom: 10px;
     font-size: 18px;
     text-transform: uppercase;
     color: #ecf0f1;
 }
 
-.footer-section p,
-.footer-section ul {
-    font-size: 14px;
-}
-
-.footer-section ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.footer-section ul li {
-    margin: 5px 0;
-}
-
-.footer-section ul li a {
+.footer-section a {
     color: #ecf0f1;
     text-decoration: none;
 }
 
-.footer-section ul li a:hover {
+.footer-section a:hover {
     text-decoration: underline;
 }
 
@@ -62,9 +51,4 @@
 
 .social-links a:hover {
     color: #3498db;
-}
-
-.footer-bottom {
-    margin-top: 20px;
-    font-size: 12px;
 }
