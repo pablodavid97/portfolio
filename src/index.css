@@ -100,3 +100,46 @@ h6 {
 p {
   margin-bottom: 1rem;
 }
+
+header {
+  margin-bottom: 5rem;
+}
+
+.projects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.project {
+  flex: 0 0 30%;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.project::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+  z-index: 1;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  position: absolute;
+  top: 40%;
+  left: 10px;
+}
+
+.project-image {
+  background-color: lightgray;
+  height: 150px;
+  text-align: center;
+  line-height: 150px;
+}
