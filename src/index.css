@@ -116,6 +116,7 @@ header {
   border: 1px solid #ccc;
   box-sizing: border-box;
   position: relative;
+  height: 250px;
 }
 
 .project::after {
@@ -129,12 +130,34 @@ header {
   z-index: 1;
 }
 
+.project-meta {
+  bottom: 50px;
+  font-weight: 700;
+  height: 120px;
+  left: 10px;
+  line-height: 1.2;
+  position: absolute;
+  transform: translateZ(30px);
+  width: 200px;
+  background-color: black;
+}
+
 .project-title {
   font-size: 1.5rem;
   font-weight: bold;
   position: absolute;
-  top: 40%;
-  left: 10px;
+  top: 25%;
+  color: #fff;
+  width: 100%;
+}
+
+.project .divider {
+  background-color: #fff;
+  height: 3px;
+  margin: 10px 1px 13px;
+  width: 100%;
+  position: absolute;
+  top: 50%;
 }
 
 .project-image {

@@ -1,9 +1,19 @@
-const Project = ({ number }) => {
+const Project = ({ title = '', url = '#', image = '' }) => {
+    const imageStyle = {
+        backgroundImage: `url(${
+            import.meta.env.VITE_PUBLIC_URL
+        }/images/${image})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+    };
     return (
-        <div className='project'>
-            <div className='project-title'>Project {number}</div>
-            <div className='project-image'>[IMAGE]</div>
-        </div>
+        <a className='project' href={url} target={url} style={imageStyle}>
+            <div className='project-meta'>
+                <h3 className='project-title'>{title}</h3>
+                <div className='divider'></div>
+            </div>
+        </a>
     );
 };
 
