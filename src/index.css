@@ -72,20 +72,6 @@ button {
   gap: 1rem;
 }
 
-/* Custom Scrollbar for webkit browsers */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #007bff;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #0056b3;
-}
-
 /* Heading and Text Styling */
 h1,
 h2,
@@ -126,38 +112,37 @@ header {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
   z-index: 1;
 }
 
 .project-meta {
-  bottom: 50px;
+  bottom: 0px;
   font-weight: 700;
-  height: 120px;
-  left: 10px;
+  height: 200px;
   line-height: 1.2;
   position: absolute;
   transform: translateZ(30px);
-  width: 200px;
-  background-color: black;
+  width: 100%;
+  background: radial-gradient(at bottom left, rgba(0, 0, 0, 0.9) 10%, rgba(0, 0, 0, 0) 70%);
 }
 
 .project-title {
   font-size: 1.5rem;
   font-weight: bold;
   position: absolute;
-  top: 25%;
+  top: 45%;
+  left: 15px;
   color: #fff;
-  width: 100%;
 }
 
 .project .divider {
   background-color: #fff;
   height: 3px;
   margin: 10px 1px 13px;
-  width: 100%;
+  width: 70%;
   position: absolute;
-  top: 50%;
+  top: 60%;
 }
 
 .project-image {
