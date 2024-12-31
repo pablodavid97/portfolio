@@ -43,9 +43,7 @@ const Project = ({ title = '', url = '#', image = '' }) => {
     const { rotateX, rotateY, translateZ } = calculateTransform();
 
     const imageStyle = {
-        backgroundImage: `url(${
-            import.meta.env.VITE_PUBLIC_URL
-        }/images/${image})`,
+        backgroundImage: `url(${import.meta.env.VITE_IMAGE_BASE_URL}/${image})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',

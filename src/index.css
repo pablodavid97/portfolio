@@ -151,3 +151,15 @@ header {
   text-align: center;
   line-height: 150px;
 }
+
+@media (max-width: 426px) {
+  .project {
+    flex: 0 0 100%;
+  }
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
+  .project {
+    flex: 0 0 45%;
+  }
+}
