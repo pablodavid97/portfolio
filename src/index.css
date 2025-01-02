@@ -55,6 +55,10 @@ button {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .hidden {
@@ -70,6 +74,24 @@ button {
 .grid {
   display: grid;
   gap: 1rem;
+}
+
+.msg {
+  width: 45%;
+  padding: 16px 10px;
+}
+
+.error {
+
+  border: 4px solid red;
+  color: red;
+  background-color: #ffeef1;
+}
+
+.info {
+  border: 4px solid rgb(9, 97, 148);
+  color: rgb(9, 97, 148);
+  background-color: #e6fff4;
 }
 
 /* Heading and Text Styling */
@@ -95,6 +117,8 @@ header {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
+  width: 100%;
+  margin-bottom: 3rem;
 }
 
 .project {
@@ -114,6 +138,18 @@ header {
   bottom: 0;
   background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
   z-index: 1;
+}
+
+.project:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: transform 0.5s ease-in-out;
+  opacity: 0.7;
 }
 
 .project-meta {

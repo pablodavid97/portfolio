@@ -1,7 +1,9 @@
-export const fetchProjects = async () => {
+export const fetchProjects = async (limit = 9, offset = 0) => {
     try {
         const response = await fetch(
-            `${import.meta.env.VITE_BACKEND_URL}/projects`
+            `${
+                import.meta.env.VITE_BACKEND_URL
+            }/projects?limit=${limit}&offset=${offset}`
         );
 
         if (!response.ok) {
@@ -10,8 +12,8 @@ export const fetchProjects = async () => {
 
         const data = await response.json();
 
-        return data.projects;
+        return data;
     } catch (error) {
-        throw new Error(`There was a poblem fetching data: ${error.message}`);
+        throw new Error(`There was a problem fetching data: ${error.message}`);
     }
 };
