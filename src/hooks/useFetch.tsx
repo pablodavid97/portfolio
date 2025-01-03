@@ -1,41 +1,52 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import type {
+    FetchResult,
+    FetchFunction,
+    DefaultFetchData,
+    FetchOptions,
+    Error,
+} from '../types';
 
 const useFetch = (
-    fetchFn,
-    defaultData = null,
-    options = { args: { limit: 0, offset: 0 }, dependencies: [] }
+    fetchFn: FetchFunction,
+    defaultData: DefaultFetchData,
+    options: FetchOptions
 ) => {
-    const { args, dependencies } = options;
-    const { limit, offset } = args;
-    const [data, setData] = useState(defaultData);
-    const [error, setError] = useState({ title: '', message: '' });
-    const [isLoading, setIsLoading] = useState(false);
-    const [hasMore, setHasMore] = useState(true);
+    const { limit, offset } = options;
+    const [data, setData] = useState<FetchResult>(defaultData);
+    const [error, setError] = useState<Error>({ title: '', message: '' });
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    const memoizedFetchFn = useMemo(() => fetchFn, [fetchFn]);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setError({ title: '', message: '' });
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, [error]);
 
     useEffect(() => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const result = await fetchFn(limit, offset);
+                const result = await memoizedFetchFn(limit, offset);
                 setData((prevData) => {
-                    const isInitialFetch = args.offset === 0;
+                    const isInitialFetch = offset === 0;
                     const newProjects = isInitialFetch
-                        ? result.projects
-                        : [...prevData?.projects, ...result.projects];
+                        ? result?.projects
+                        : [
+                              ...(prevData?.projects || []),
+                              ...(result?.projects || []),
+                          ];
 
                     return {
                         ...result,
                         projects: newProjects ?? [],
                     };
                 });
-
-                if (
-                    result.projects.length === 0 ||
-                    result.projects.length < limit
-                ) {
-                    setHasMore(false);
-                }
-            } catch (error) {
+            } catch (error: any) {
                 setError({
                     title: 'Something went wrong',
                     message: error.message || 'Error fetching data',
@@ -44,13 +55,12 @@ const useFetch = (
             setIsLoading(false);
         };
         fetchData();
-    }, dependencies);
+    }, [memoizedFetchFn, limit, offset]);
 
     return {
         data,
         error,
         isLoading,
-        hasMore,
     };
 };
 

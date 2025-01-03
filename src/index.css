@@ -175,7 +175,7 @@ header {
 .project .divider {
   background-color: #fff;
   height: 3px;
-  margin: 10px 1px 13px;
+  margin: 10px 1px 13px 0px;
   width: 70%;
   position: absolute;
   top: 60%;

@@ -1,54 +1,35 @@
-import { useState, useEffect, useRef } from 'react';
+import { useRef } from 'react';
+import useGlobal from './hooks/useGlobal.tsx';
 import Projects from './components/Projects.tsx';
 import useFetch from './hooks/useFetch.tsx';
 import { fetchProjects } from './http.ts';
+import { handleScroll } from './util.ts';
+import useDebouncedScroll from './hooks/useDebouncedScroll.tsx';
+import InfoMessage from './components/InfoMessage.tsx';
+import Spinner from './components/Spinner.tsx';
 
 import './App.css';
 
 const App = () => {
-    const [offset, setOffset] = useState(0);
-    const [limit, setLimit] = useState(9);
     const prevScrollY = useRef(0);
-    const { data, error, isLoading, hasMore } = useFetch(
+    const { limit, offset, setOffset, setLimit } = useGlobal();
+    const { data, error, isLoading } = useFetch(
         fetchProjects,
         { projects: [], total: 0 },
-        {
-            args: { limit, offset },
-            dependencies: [limit, offset],
-        }
+        { limit, offset }
     );
 
-    const handleScroll = () => {
-        const currentScrollY = window.scrollY;
-
-        const isScrollingDown = currentScrollY > prevScrollY.current;
-        prevScrollY.current = currentScrollY;
-
-        const isOffsetGreaterThanTotal = offset + limit >= data.total;
-
-        // Only trigger new fetch when scrolling down and near the bottom
-        if (
-            isScrollingDown &&
-            window.innerHeight + document.documentElement.scrollTop >=
-                document.documentElement.offsetHeight - 5 && // Adjust the threshold with bottom of the page
-            hasMore &&
-            !isLoading &&
-            !isOffsetGreaterThanTotal
-        ) {
-            setOffset((prevOffset) => prevOffset + limit);
-            setLimit(6);
-        }
-    };
-
-    useEffect(() => {
-        const debouncedScroll = () => {
-            clearTimeout(debouncedScroll.timer);
-            debouncedScroll.timer = setTimeout(handleScroll, 100); // Debounce scroll
-        };
-
-        window.addEventListener('scroll', debouncedScroll);
-        return () => window.removeEventListener('scroll', debouncedScroll);
-    }, [hasMore, isLoading]);
+    useDebouncedScroll(() => {
+        handleScroll(
+            offset,
+            limit,
+            data?.total,
+            prevScrollY,
+            setOffset,
+            setLimit,
+            isLoading
+        );
+    }, []);
 
     return (
         <>
@@ -57,24 +38,16 @@ const App = () => {
                     <h1>Portfolio</h1>
                     <p>Checkout the things I've built throughout the years.</p>
                 </header>
-                {isLoading && data.total === 0 && (
-                    <div className='msg info'>
-                        <h3>Loading</h3>
-                        <p>Loading data, please wait...</p>
-                    </div>
-                )}
+                {isLoading && data.total === 0 && <Spinner />}
                 {error.message && (
-                    <div className='msg error'>
-                        <h3>{error.title}</h3>
-                        <p>{error.message}</p>
-                    </div>
+                    <InfoMessage
+                        title={error.title}
+                        message={error.message}
+                        type='error'
+                    />
                 )}
                 <Projects projects={data.projects} />
-                {isLoading && data.projects.length > 0 && (
-                    <div className='msg info'>
-                        <p>Loading more projects...</p>
-                    </div>
-                )}
+                {isLoading && data.projects.length > 0 && <Spinner />}
             </main>
         </>
     );
