@@ -13,3 +13,10 @@ export type Error = {
     title: string;
     message: string;
 };
+
+export type ProjectType = {
+    id: number;
+    title: string;
+    url: string;
+    image: string;
+};

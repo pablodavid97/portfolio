@@ -10,9 +10,7 @@ const defaultValue: GlobalContextType = {
 
 export const GlobalContext = createContext<GlobalContextType>(defaultValue);
 
-const GlobalContextProvider: React.FC<GlobalContextProviderProps> = ({
-    children,
-}) => {
+const GlobalContextProvider = ({ children }: GlobalContextProviderProps) => {
     const [offset, setOffset] = useState<number>(defaultValue.offset);
     const [limit, setLimit] = useState<number>(defaultValue.limit);
 

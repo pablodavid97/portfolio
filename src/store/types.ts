@@ -1,10 +1,10 @@
-import { ReactNode } from 'react';
+import { ReactNode, Dispatch, SetStateAction } from 'react';
 
 export type GlobalContextType = {
     offset: number;
     limit: number;
-    setOffset: (value: number) => void;
-    setLimit: (value: number) => void;
+    setOffset: Dispatch<SetStateAction<number>>;
+    setLimit: Dispatch<SetStateAction<number>>;
 };
 
 export type GlobalContextProviderProps = {

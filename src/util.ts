@@ -1,12 +1,14 @@
+import { MutableRefObject, Dispatch, SetStateAction, MouseEvent } from 'react';
+
 export const handleScroll = (
-    offset,
-    limit,
-    totalItems,
-    prevScrollY,
-    setOffset,
-    setLimit,
-    isLoading
-) => {
+    offset: number,
+    limit: number,
+    totalItems: number,
+    prevScrollY: MutableRefObject<number>,
+    setOffset: Dispatch<SetStateAction<number>>,
+    setLimit: Dispatch<SetStateAction<number>>,
+    isLoading: boolean
+): void => {
     const currentScrollY = window.scrollY;
     const BOTTOM_THRESHOLD = 5;
 
@@ -28,7 +30,11 @@ export const handleScroll = (
     }
 };
 
-export const handleMouseMove = (e, setMousePosition, setDimensions) => {
+export const handleMouseMove = (
+    e: MouseEvent<HTMLDivElement>,
+    setMousePosition: Dispatch<SetStateAction<{ x: number; y: number }>>,
+    setDimensions: Dispatch<SetStateAction<{ width: number; height: number }>>
+): void => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -65,7 +71,7 @@ export const calculateTransform = (
     return { rotateX, rotateY, translateZ };
 };
 
-export const getProjectImgStyle = (image: string) => {
+export const getProjectImgStyle = (image: string): React.CSSProperties => {
     return {
         backgroundImage: `url(${import.meta.env.VITE_IMAGE_BASE_URL}/${image})`,
         backgroundSize: 'cover',
@@ -78,7 +84,7 @@ export const getShineStyle = (
     gradientX: number,
     gradientY: number,
     isHovered: boolean
-) => {
+): React.CSSProperties => {
     return {
         position: 'absolute',
         top: 0,

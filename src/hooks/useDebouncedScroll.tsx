@@ -2,9 +2,11 @@ import { useEffect } from 'react';
 
 const useDebouncedScroll = (callback: () => void, delay: number = 100) => {
     useEffect(() => {
+        let timer: number;
+
         const debouncedScroll = () => {
-            clearTimeout(debouncedScroll.timer);
-            debouncedScroll.timer = setTimeout(callback, delay); // Debounce scroll
+            clearTimeout(timer); // Clear previous timeout if exists
+            timer = setTimeout(callback, delay);
         };
 
         window.addEventListener('scroll', debouncedScroll);

@@ -11,7 +11,7 @@ import Spinner from './components/Spinner.tsx';
 import './App.css';
 
 const App = () => {
-    const prevScrollY = useRef(0);
+    const prevScrollY = useRef<number>(0);
     const { limit, offset, setOffset, setLimit } = useGlobal();
     const { data, error, isLoading } = useFetch(
         fetchProjects,
@@ -29,7 +29,7 @@ const App = () => {
             setLimit,
             isLoading
         );
-    }, []);
+    });
 
     return (
         <>
@@ -38,7 +38,7 @@ const App = () => {
                     <h1>Portfolio</h1>
                     <p>Checkout the things I've built throughout the years.</p>
                 </header>
-                {isLoading && data.total === 0 && <Spinner />}
+                {isLoading && data?.total === 0 && <Spinner />}
                 {error.message && (
                     <InfoMessage
                         title={error.title}
@@ -46,8 +46,8 @@ const App = () => {
                         type='error'
                     />
                 )}
-                <Projects projects={data.projects} />
-                {isLoading && data.projects.length > 0 && <Spinner />}
+                <Projects projects={data?.projects} />
+                {isLoading && data?.projects.length > 0 && <Spinner />}
             </main>
         </>
     );

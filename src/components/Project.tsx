@@ -6,8 +6,9 @@ import {
     getProjectImgStyle,
     getShineStyle,
 } from '../util';
+import type { ProjectType } from '../types';
 
-const Project = ({ title = '', url = '#', image = '' }) => {
+const Project = ({ id, title, url = '#', image = '' }: ProjectType) => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
     const [isHovered, setIsHovered] = useState(false);
@@ -53,7 +54,7 @@ const Project = ({ title = '', url = '#', image = '' }) => {
             style={imageStyle}
         >
             <div className='shine' style={shineStyle}></div>
-            <div className='project-meta'>
+            <div id={`project-${id}`} className='project-meta'>
                 <h3 className='project-title'>{title}</h3>
                 <div className='divider'></div>
             </div>

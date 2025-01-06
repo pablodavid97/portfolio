@@ -1,4 +1,4 @@
-export const fetchProjects = async (limit = 9, offset = 0) => {
+export const fetchProjects = async (limit: number = 9, offset: number = 0) => {
     try {
         const response = await fetch(
             `${
@@ -13,7 +13,7 @@ export const fetchProjects = async (limit = 9, offset = 0) => {
         const data = await response.json();
 
         return data;
-    } catch (error) {
+    } catch (error: any) {
         throw new Error(`There was a problem fetching data: ${error.message}`);
     }
 };
