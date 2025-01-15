@@ -31,7 +31,7 @@ export const handleScroll = (
 };
 
 export const handleMouseMove = (
-    e: MouseEvent<HTMLDivElement>,
+    e: MouseEvent<HTMLAnchorElement>,
     setMousePosition: Dispatch<SetStateAction<{ x: number; y: number }>>,
     setDimensions: Dispatch<SetStateAction<{ width: number; height: number }>>
 ): void => {

@@ -22,7 +22,7 @@ const useFetch = (
     useEffect(() => {
         const timer = setTimeout(() => {
             setError({ title: '', message: '' });
-        }, 3000);
+        }, 5000);
 
         return () => clearTimeout(timer);
     }, [error]);

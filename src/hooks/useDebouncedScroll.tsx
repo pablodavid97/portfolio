@@ -5,7 +5,7 @@ const useDebouncedScroll = (callback: () => void, delay: number = 100) => {
         let timer: number;
 
         const debouncedScroll = () => {
-            clearTimeout(timer); // Clear previous timeout if exists
+            clearTimeout(timer);
             timer = setTimeout(callback, delay);
         };
 
