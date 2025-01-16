@@ -1,6 +1,14 @@
 # Use an official Node.js runtime as a parent image
 FROM node:20 AS build
 
+# Define build-time arguments
+ARG IMAGE_URL
+ARG BACKEND_URL
+
+# Set environment variables inside the container
+ENV VITE_IMAGE_BASE_URL=${IMAGE_URL}
+ENV VITE_BACKEND_URL=${BACKEND_URL}
+
 # Set working directory inside the container
 WORKDIR /app
 

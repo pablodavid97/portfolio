@@ -18,8 +18,8 @@ jobs:
             - name: Build and push Docker image to ACR
               run: |
                   echo ${{ secrets.ACR_PASSWORD }} | docker login portfolioreactcontainer.azurecr.io -u ${{ secrets.ACR_USERNAME }} --password-stdin
-                  docker build --build-arg VITE_IMAGE_BASE_URL=${{ secrets.IMAGE_S3_URL }} \
-                               --build-arg VITE_BACKEND_URL=${{ secrets.BACKEND_URL }} \
+                  docker build --build-arg IMAGE_URL=${{ secrets.IMAGE_S3_URL }} \
+                               --build-arg BACKEND_URL=${{ secrets.BACKEND_URL }} \
                                -t portfolioreactcontainer.azurecr.io/react-app:latest .
                   docker push portfolioreactcontainer.azurecr.io/react-app:latest
 
