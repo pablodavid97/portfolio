@@ -9,6 +9,10 @@ jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
 
+        env: # This section sets environment variables for the entire job
+            VITE_IMAGE_BASE_URL: ${{ secrets.IMAGE_S3_URL }}
+            VITE_BACKEND_URL: ${{ secrets.BACKEND_URL }}
+
         steps:
             # Checkout the code from the repository
             - name: Checkout code
