@@ -9,10 +9,6 @@ jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
 
-        env: # This section sets environment variables for the entire job
-            VITE_IMAGE_BASE_URL: ${{ secrets.IMAGE_S3_URL }}
-            VITE_BACKEND_URL: ${{ secrets.BACKEND_URL }}
-
         steps:
             # Checkout the code from the repository
             - name: Checkout code
@@ -22,7 +18,9 @@ jobs:
             - name: Build and push Docker image to ACR
               run: |
                   echo ${{ secrets.ACR_PASSWORD }} | docker login portfolioreactcontainer.azurecr.io -u ${{ secrets.ACR_USERNAME }} --password-stdin
-                  docker build -t portfolioreactcontainer.azurecr.io/react-app:latest .
+                  docker build --build-arg VITE_IMAGE_BASE_URL=${{ secrets.IMAGE_S3_URL }} \
+                               --build-arg VITE_BACKEND_URL=${{ secrets.BACKEND_URL }} \
+                               -t portfolioreactcontainer.azurecr.io/react-app:latest .
                   docker push portfolioreactcontainer.azurecr.io/react-app:latest
 
             # Deploy to Azure Web App using Publish Profile
