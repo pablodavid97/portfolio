@@ -26,22 +26,10 @@ RUN npm run build
 
 # Use Nginx to serve the React app
 FROM nginx:alpine
-
-# Install Apache2-utils to use the htpasswd tool
-RUN apk add --no-cache apache2-utils
-
-# Copy the build output from the previous stage to the Nginx html directory
-# Since Vite outputs to the "dist" folder, we copy from /app/dist
 COPY --from=build /app/dist /usr/share/nginx/html
-
-COPY nginx.conf /etc/nginx/nginx.conf
-
-# Use a shell script to dynamically generate .htpasswd at runtime
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
 
 # Expose port 80
 EXPOSE 80
 
-# Update CMD to use the script before starting Nginx
-CMD ["/usr/local/bin/entrypoint.sh"]
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
