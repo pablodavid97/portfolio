@@ -1,4 +1,5 @@
 export const fetchProjects = async (limit: number = 9, offset: number = 0) => {
+    console.log('testing...');
     try {
         const response = await fetch(
             `${
