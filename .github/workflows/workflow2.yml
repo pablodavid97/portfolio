@@ -16,14 +16,17 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
 
+            - name: Define image tag
+              run: echo "IMAGE_TAG=portfolio-app:${{ github.run_number }}" >> $GITHUB_ENV
+
             # Build and push Docker image to Azure Container Registry (ACR)
             - name: Build and push Docker image to ACR
               run: |
                   echo ${{ secrets.ACR_PASSWORD }} | docker login ${{ secrets.CONTAINER_REGISTRY_NAME }}.azurecr.io -u ${{ secrets.ACR_USERNAME }} --password-stdin
                   docker build --build-arg IMAGE_URL=${{ secrets.IMAGE_S3_URL }} \
                                --build-arg BACKEND_URL=${{ secrets.BACKEND_URL }} \
-                               -t ${{ secrets.CONTAINER_REGISTRY_NAME }}.azurecr.io/react-app:latest .
-                  docker push ${{ secrets.CONTAINER_REGISTRY_NAME }}.azurecr.io/react-app:latest
+                               -t ${{ secrets.CONTAINER_REGISTRY_NAME }}.azurecr.io/$IMAGE_TAG .
+                  docker push ${{ secrets.CONTAINER_REGISTRY_NAME }}.azurecr.io/$IMAGE_TAG
 
             - name: Login to Azure using Service Principal
               uses: azure/login@v2
@@ -36,4 +39,4 @@ jobs:
               with:
                   app-name: ${{ secrets.PORTFOLIO_NAME }}
                   slot-name: 'Production'
-                  package: .
+                  images: ${{ secrets.CONTAINER_REGISTRY_NAME }}.azurecr.io/${{ env.IMAGE_TAG }}
